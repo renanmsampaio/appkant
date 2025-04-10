@@ -1,33 +1,8 @@
 {
     "routes": [
         {
-            "route": "/admin/*",
-            "allowedRoles": [ "Admin" ]
-        },
-        {
-            "route": "/authenticated/*",
-            "allowedRoles": [ "authenticated" ]
+            "route": "/*",
+            "allowedRoles": ["authenticated"]
         }
-    ],
-    "auth": {
-        "rolesSource": "/api/GetRoles",
-        "identityProviders": {
-            "azureActiveDirectory": {
-                "userDetailsClaim": "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name",
-                "registration": {
-                    "openIdIssuer": "https://login.microsoftonline.com/1e355c04-e0a4-42ed-8e2d-7351591f0ef1",
-                    "clientIdSettingName": "ENTRA_CLIENT_ID",
-                    "clientSecretSettingName": "ENTRA_CLIENT_SECRET"
-                },
-                "login": {
-                    "loginParameters": [
-                        "resource=https://graph.microsoft.com"
-                    ]
-                }
-            }
-        }
-    },
-    "globalHeaders": {
-        "Cache-Control": "no-cache"
-    }
+    ]
 }
