@@ -1,24 +1,8 @@
 {
     "routes": [
         {
-            "route": "/.auth/*",
-            "allowedRoles": ["anonymous"]
-        },
-        {
-            "route": "/images/*",
-            "allowedRoles": ["anonymous"]
-        },
-        {
-            "route": "/static/*",
-            "allowedRoles": ["anonymous"]
-        },
-        {
-            "route": "/favicon.ico",
-            "allowedRoles": ["anonymous"]
-        },
-        {
             "route": "/*",
-            "allowedRoles": ["admin"],
+            "allowedRoles": ["admin, authenticated"],
             "serve": "/",
             "statusCode": 200
         }
