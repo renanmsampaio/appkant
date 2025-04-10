@@ -30,12 +30,5 @@
                 }
             }
         }
-    },
-    "platformErrorOverrides": [
-        {
-            "errorType": "Unauthenticated",
-            "statusCode": "302",
-            "serve": "/.auth/login/aad"
-        }
-    ]
+    }
 }
