@@ -2,7 +2,7 @@
     "routes": [
         {
             "route": "/*",
-            "allowedRoles": ["admin, authenticated"],
+            "allowedRoles": ["admin", "authenticated"],
             "serve": "/",
             "statusCode": 200
         }
