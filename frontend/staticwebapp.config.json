@@ -1,23 +1,25 @@
 {
     "routes": [
         {
-            "route": "/admin/*",
-            "allowedRoles": [ "admin" ]
+            "route": "/*",
+            "allowedRoles": ["authenticated"]
         },
-        {
-            "route": "/authenticated/*",
-            "allowedRoles": [ "authenticated" ]
-        }
     ],
+    "responseOverrides": {
+        "401": {
+            "statusCode": 302,
+            "redirect": "/.auth/login/aad"
+        }
+    },
     "auth": {
         "rolesSource": "/api/GetRoles",
         "identityProviders": {
             "azureActiveDirectory": {
                 "userDetailsClaim": "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name",
                 "registration": {
-                    "openIdIssuer": "https://login.microsoftonline.com/<YOUR_AAD_TENANT_ID>",
-                    "clientIdSettingName": "AAD_CLIENT_ID",
-                    "clientSecretSettingName": "AAD_CLIENT_SECRET"
+                    "openIdIssuer": "https://login.microsoftonline.com/1e355c04-e0a4-42ed-8e2d-7351591f0ef1",
+                    "clientIdSettingName": "ENTRA_CLIENT_ID",
+                    "clientSecretSettingName": "ENTRA_CLIENT_SECRET"
                 },
                 "login": {
                     "loginParameters": [
