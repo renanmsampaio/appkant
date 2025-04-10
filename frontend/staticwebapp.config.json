@@ -7,12 +7,6 @@
             "statusCode": 200
         }
     ],
-    "responseOverrides": {
-        "401": {
-            "statusCode": 302,
-            "redirect": "/.auth/login/aad"
-        }
-    },
     "auth": {
         "rolesSource": "/api/GetRoles",
         "identityProviders": {
@@ -30,5 +24,12 @@
                 }
             }
         }
-    }
+    },
+    "platformErrorOverrides": [
+        {
+            "errorType": "Unauthenticated",
+            "statusCode": "302",
+            "serve": "/.auth/login/aad"
+        }
+    ]
 }
