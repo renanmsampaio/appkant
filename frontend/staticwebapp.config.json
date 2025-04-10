@@ -5,20 +5,24 @@
             "allowedRoles": ["anonymous"]
         },
         {
+            "route": "/images/*",
+            "allowedRoles": ["anonymous"]
+        },
+        {
+            "route": "/static/*",
+            "allowedRoles": ["anonymous"]
+        },
+        {
+            "route": "/favicon.ico",
+            "allowedRoles": ["anonymous"]
+        },
+        {
             "route": "/*",
-            "allowedRoles": ["authenticated"]
+            "allowedRoles": ["authenticated"],
+            "serve": "/",
+            "statusCode": 200
         }
     ],
-    "responseOverrides": {
-        "401": {
-            "statusCode": 302,
-            "redirect": "/.auth/login/aad?post_login_redirect_uri=/"
-        },
-        "403": {
-            "statusCode": 302,
-            "redirect": "/unauthorized"
-        }
-    },
     "auth": {
         "rolesSource": "/api/GetRoles",
         "identityProviders": {
@@ -36,5 +40,12 @@
                 }
             }
         }
-    }
+    },
+    "platformErrorOverrides": [
+        {
+            "errorType": "Unauthenticated",
+            "statusCode": "302",
+            "serve": "/.auth/login/aad"
+        }
+    ]
 }
