@@ -1,11 +1,24 @@
 {
     "routes": [
         {
+            "route": "/.auth/*",
+            "allowedRoles": ["anonymous"]
+        },
+        {
             "route": "/*",
-            "allowedRoles": ["authenticated"],
-            "defaultRedirect": "/"
+            "allowedRoles": ["authenticated"]
         }
     ],
+    "responseOverrides": {
+        "401": {
+            "statusCode": 302,
+            "redirect": "/.auth/login/aad?post_login_redirect_uri=/"
+        },
+        "403": {
+            "statusCode": 302,
+            "redirect": "/unauthorized"
+        }
+    },
     "auth": {
         "rolesSource": "/api/GetRoles",
         "identityProviders": {
