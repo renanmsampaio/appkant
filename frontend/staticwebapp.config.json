@@ -18,7 +18,7 @@
         },
         {
             "route": "/*",
-            "allowedRoles": ["authenticated"],
+            "allowedRoles": ["admin"],
             "serve": "/",
             "statusCode": 200
         }
