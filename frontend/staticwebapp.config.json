@@ -2,34 +2,28 @@
     "routes": [
         {
             "route": "/*",
-            "allowedRoles": ["admin", "authenticated"],
-            "serve": "/",
-            "statusCode": 200
+            "allowedRoles": ["authenticated"]
         }
     ],
+    "responseOverrides": {
+        "401": {
+            "statusCode": 302,
+            "redirect": "/.auth/login/aad"
+        }
+    },
     "auth": {
-        "rolesSource": "/api/GetRoles",
         "identityProviders": {
             "azureActiveDirectory": {
                 "userDetailsClaim": "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name",
                 "registration": {
-                    "openIdIssuer": "https://login.microsoftonline.com/1e355c04-e0a4-42ed-8e2d-7351591f0ef1",
+                    "openIdIssuer": "https://login.microsoftonline.com/a677c06b-f6e8-43f8-b1ad-f9c2b9542d42",
                     "clientIdSettingName": "ENTRA_CLIENT_ID",
                     "clientSecretSettingName": "ENTRA_CLIENT_SECRET"
-                },
-                "login": {
-                    "loginParameters": [
-                        "resource=https://graph.microsoft.com"
-                    ]
                 }
             }
         }
     },
-    "platformErrorOverrides": [
-        {
-            "errorType": "Unauthenticated",
-            "statusCode": "302",
-            "serve": "/.auth/login/aad"
-        }
-    ]
+    "globalHeaders": {
+        "Cache-Control": "no-cache"
+    }
 }
